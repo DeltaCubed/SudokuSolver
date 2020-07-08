@@ -18,6 +18,10 @@ public class SudokuBoards {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 6, 0, 8, 0, 0 }, { 0, 4, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 5, 3, 0, 0, 0, 0, 7 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 2, 0, 0, 0, 0, 6, 0, 0 },
             { 0, 0, 7, 5, 0, 9, 0, 0, 0 } };
+    private int[][] board5 = { { 0, 0, 2, 0, 0, 0, 0, 0, 5 }, { 8, 9, 6, 5, 7, 1, 4, 0, 2 },
+            { 0, 0, 0, 3, 0, 0, 0, 7, 0 }, { 0, 8, 0, 1, 0, 0, 9, 0, 0 }, { 6, 0, 0, 0, 0, 9, 0, 4, 8 },
+            { 9, 0, 4, 6, 0, 2, 0, 1, 0 }, { 0, 1, 0, 0, 6, 3, 0, 0, 0 }, { 3, 0, 0, 9, 0, 5, 8, 2, 1 },
+            { 4, 2, 0, 0, 0, 0, 3, 0, 0 } };
 
     public int[][] pickBoard() {
         switch ((int) (Math.random() * 4)) {
@@ -27,8 +31,13 @@ public class SudokuBoards {
                 return board2;
             case 3:
                 return board3;
-            default:
+            case 4:
                 return board4;
+            case 5:
+                SudokuGenerator randomBoard = new SudokuGenerator(9, 20);
+                return randomBoard.getSudoku();
+            default:
+                return board5;
         }
     }
 }
