@@ -1,23 +1,20 @@
-
 public class SudokuSolver {
-
     private int[][] board;
-    public static final int EMPTY = 0; // empty cell
-    public static final int SIZE = 9; // size of our Sudoku grids
+    public static final int boxIndexEmpty = 0;
+    public static final int sizeOfGrid = 9;
 
     public SudokuSolver(int[][] board) {
-        this.board = new int[SIZE][SIZE];
+        this.board = new int[sizeOfGrid][sizeOfGrid];
 
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
+        for (int i = 0; i < sizeOfGrid; i++) {
+            for (int j = 0; j < sizeOfGrid; j++) {
                 this.board[i][j] = board[i][j];
             }
         }
     }
 
-    // we check if a possible number is already in a row
-    private boolean isInRow(int row, int number) {
-        for (int i = 0; i < SIZE; i++)
+    private boolean rowChecker(int row, int number) {
+        for (int i = 0; i < sizeOfGrid; i++)
             if (board[row][i] == number)
                 return true;
 
@@ -25,8 +22,8 @@ public class SudokuSolver {
     }
 
     // we check if a possible number is already in a column
-    private boolean isInCol(int col, int number) {
-        for (int i = 0; i < SIZE; i++)
+    private boolean colChecker(int col, int number) {
+        for (int i = 0; i < sizeOfGrid; i++)
             if (board[i][col] == number)
                 return true;
 
@@ -34,7 +31,7 @@ public class SudokuSolver {
     }
 
     // we check if a possible number is in its 3x3 box
-    private boolean isInBox(int row, int col, int number) {
+    private boolean inBox(int row, int col, int number) {
         int r = row - row % 3;
         int c = col - col % 3;
 
@@ -47,42 +44,40 @@ public class SudokuSolver {
     }
 
     // combined method to check if a number possible to a row,col position is ok
-    private boolean isOk(int row, int col, int number) {
-        return !isInRow(row, number) && !isInCol(col, number) && !isInBox(row, col, number);
+    private boolean positionIsValid(int row, int col, int number) {
+        return !rowChecker(row, number) && !colChecker(col, number) && !inBox(row, col, number);
     }
 
-    // Solve method. We will use a recursive BackTracking algorithm.
-    // we will see better approaches in next video :)
-    public boolean solve() {
-        for (int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                // we search an empty cell
-                if (board[row][col] == EMPTY) {
-                    // we try possible numbers
-                    for (int number = 1; number <= SIZE; number++) {
-                        if (isOk(row, col, number)) {
-                            // number ok. it respects sudoku constraints
+    public boolean solver() {
+        for (int row = 0; row < sizeOfGrid; row++) {
+            for (int col = 0; col < sizeOfGrid; col++) {
+                /** Base Checker */
+                if (board[row][col] == boxIndexEmpty) {
+                    /** Tries for number */
+                    for (int number = 1; number <= sizeOfGrid; number++) {
+                        /** Checks if the row is valid */
+                        if (positionIsValid(row, col, number)) {
                             board[row][col] = number;
 
-                            if (solve()) { // we start backtracking recursively
+                            if (solver()) {
                                 return true;
-                            } else { // if not a solution, we empty the cell and we continue
-                                board[row][col] = EMPTY;
+                            } else {
+                                board[row][col] = boxIndexEmpty;
                             }
                         }
                     }
 
-                    return false; // we return false
+                    return false;
                 }
             }
         }
 
-        return true; // sudoku solved
+        return true;
     }
 
     public void display() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
+        for (int i = 0; i < sizeOfGrid; i++) {
+            for (int j = 0; j < sizeOfGrid; j++) {
                 System.out.print(" " + board[i][j]);
             }
 
@@ -99,7 +94,7 @@ public class SudokuSolver {
         sudoku.display();
 
         // we try resolution
-        if (sudoku.solve()) {
+        if (sudoku.solver()) {
             System.out.println("Sudoku Grid solved with simple BT");
             sudoku.display();
         } else {
