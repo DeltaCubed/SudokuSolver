@@ -28,7 +28,7 @@ public class SudokuBoards {
             { 0, 0, 0, 0, 0, 0, 1, 4, 5 } };
 
     public int[][] pickBoard() {
-        switch ((int) (Math.random() * 4)) {
+        switch ((int) (Math.random() * 6)) {
             case 1:
                 return board1;
             case 2:
