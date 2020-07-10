@@ -95,10 +95,10 @@ public class SudokuSolver {
 
         // we try resolution
         if (sudoku.solver()) {
-            System.out.println("Sudoku Grid solved with simple BT");
+            System.out.println("Answer to Sudoku Grid:");
             sudoku.display();
         } else {
-            System.out.println("Unsolvable");
+            System.out.println("Board could not be solved.");
         }
     }
 
