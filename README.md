@@ -13,9 +13,10 @@ The board will have a layout like this:<br/>
             0 0 0 0 0 0 0 0 0
             0 0 0 0 0 0 0 0 0
           </pre>
-The framework for SudokuBoard.java:<br/>
+# The framework for SudokuBoard.java:<br/>
 This class is fairly easy to create. We just need to list several 2d arrays, then create a method that randomly chooses one to return. This can be done several ways, but my pickBoard() method uses a switch case that chooses the boards randomly with Math.random().
-The framework for SudokuSolver.java:<br/>
+
+# The framework for SudokuSolver.java:<br/>
 First, I declared a Constructor that takes in a 2d array; that's the board, which has been called from our class, "SudokuBoard". It will set the new board into our private global variable, and copy everything over.
 
 I needed to find out if positions are valid,so I created a method that checks the rows and columns from the position of the row/column and see if they are equal to the number that we are currently trying to find out if it's a valid spot to put the number there. Also, we want to check if the inner box (The 3x3 area) doesn't already contain this, with a simple checker:
