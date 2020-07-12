@@ -34,7 +34,7 @@ Now we can move onto the solution of the problem.
 Using a backtracking algorithm, we can find the answer with a recursive call to your solver() method.
 In order to make this recursive, we need a base case that checks if the position of the row/ column is empty, then return false, otherwise, continue. We can do this by adding in a nested for-loop, for rows and columns, and making a simple if statement that checks if the number there is zero. Next, We need to find a number that fits, between 1-9 with 1 and 9 being inclusive. This can be done with a simple for loop with the "i" value being the number to be checked and an if statement to call our positionIsValid method. If it is valid, then add the number, and we need to check if solver() is true then return true in the method. Our else case for the if solver() is true, is to just leave the box as a zero.
 If we get through everything, and we haven't already returned an object, we can just return true at the end. Our method will look something like this:<br/><br/>
-
+<pre>
               for (int row = 0; row < sizeOfGrid; row++) {<br/>
                 for (int col = 0; col < sizeOfGrid; col++) {<br/>
                   /** Base Checker */<br/>
@@ -58,6 +58,7 @@ If we get through everything, and we haven't already returned an object, we can 
               }<br/>
               return true;<br/>
             <br/>
+            </pre>
 Now all we really need is to create a main method and a print method. Printing the grid is fairly easy, just create a nested for-loop and loop through the array, printing out the individual rows and columns. For the main method, We need to create two new objects from SudokuSolver(), and SudokuBoards(). When we declare the SudokuSolver, our Constructor needs to take in a 2d array (a sudoku board), so we need to access our pickBoard() method from sudokuBoards, and pass it into that constructor. After that, we can do a simle if/else statement to see if the board can actually be solved, and print the board out if we can.<br/><br/>
 
 The output should looks like this:<br/>
