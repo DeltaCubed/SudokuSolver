@@ -1,5 +1,5 @@
 # SudokuSolver
-I created a Sudoku Solver using Java and the backtracking algorithm.<br/>
+Created a simple Sudoku Solver using Java and the backtracking algorithm.<br/>
 I created two files, one to store the boards and randomly pick one, and another file to compile the answer.<br/>
 The board will be built on a 9x9 2d array, and it will contain Zeros, which are the "Empty" slots, and the numbers that come with it.<br/>
 The board will have a layout like this:<br/>
